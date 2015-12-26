@@ -19,7 +19,7 @@ class Twig
 
 		$this->_template_dir = $this->CI->config->item('template_dir');
 		$this->_cache_dir = $this->CI->config->item('cache_dir');
-		$loader = new Twig_Loader_FileSystem($this->_template_dir, $this->_cache_dir);
+		$loader = new Twig_Loader_Filesystem($this->_template_dir, $this->_cache_dir);
 
         $this->_twig = new Twig_Environment($loader);
 		
