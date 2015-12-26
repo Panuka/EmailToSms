@@ -71,6 +71,7 @@ class Welcome extends CI_Controller {
 	}
 
 	public function cli() {
+		$this->load->library('test');
 		echo "Hello world!\n";
 	}
 }
