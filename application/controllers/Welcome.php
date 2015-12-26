@@ -69,4 +69,8 @@ class Welcome extends CI_Controller {
 		$this->load->library('twig');
 		echo $this->twig->render('welcome_message', array('text'=>'Hello world!'));
 	}
+
+	public function cli() {
+		echo "Hello world!\n";
+	}
 }
