@@ -1,0 +1,126 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7]>
+<html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/slick.css">
+    <link rel="stylesheet" href="/assets/js/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="/assets/css/freeze.css">
+    <script type="text/javascript" src="/assets/js/modernizr.custom.32033.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="pre-loader">
+    <div class="load-con">
+        <img src="/assets/img/freeze/logo.png" class="animated fadeInDown" alt="">
+
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+</div>
+
+<header>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="fa fa-bars fa-lg"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/img/freeze/logo.png" alt="" class="logo" style="">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Настройки</a>
+                    </li>
+                    <li>
+                        <a href="/web/stats/">Статистика</a>
+                    </li>
+                    {% if isAdmin %}
+                        <li>
+                            <a href="/web/admin/">Управление системой</a>
+                        </li>
+                    {% endif %}
+                    <li style="border-left: 1px solid #ddd;">
+                        <a>[ {{ user.username }} ]</a>
+                    </li>
+                    <li>
+                        <a href="/auth/logout/"><i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main-admin-form" id="index"></div>
+    <section>
+        <div class="tp-banner-container" style="">
+            <div class="tp-banner">
+                <div class="section-heading scrollpoint sp-effect3">
+                    <h1 style="color: #fff">{{ title }}</h1>
+                    <div class="divider"></div>
+                </div>
+                {% block main_content %}{% endblock %}
+            </div>
+        </div>
+    </section>
+</header>
+
+
+<div class="wrapper">
+    {% block after_content %}{% endblock %}
+    <footer>
+        <div class="container">
+            <a href="#" class="scrollpoint sp-effect3">
+                <img src="/assets/img/freeze/logo.png" alt="" class="logo">
+            </a>
+
+            <div class="rights">
+                <p>&copy; 2015</p>
+                <p>Разработчик <a href="mailto:agentrol75@gmail.com" target="_blank">Kirill</a></p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<script src="/assets/js/jquery-1.11.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/placeholdem.min.js"></script>
+<script src="/assets/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+<script src="/assets/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="/assets/js/waypoints.min.js"></script>
+<script src="/assets/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<div class="row">
+    <div class="col-xs-12">
+        {% for u,user in users %}
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-linux"></i>
+                    <span>Статистика пользователя {{ user.username }}</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+
+            <div class="box-content no-padding table-responsive">
+                <table class="table table-bordered table-striped table-hover table-heading datatable-2
+                    table-datatable"
+                       id="datatable-2{{ u }}">
+                    <thead class="ccc">
+                    <tr>
+                        <th class="sort-desct">Дата<label><input type="text" name="search_rate" placeholder=""
+                                                                 class="search_init"
+                                        /></label></th>
+                        <th>Модель<label><input type="text" name="search_name" placeholder=""
+                                                class="search_init"
+                                        /></label></th>
+                        <th>Год<label><input type="text" name="search_name" placeholder=""
+                                             class="search_init"
+                                        /></label></th>
+                        <th>Ссылка<label><input type="text" name="search_votes" placeholder=""
+                                                class="search_init"
+                                        /></label></th>
+                        <th>Цена А<label><input type="text" name="search_homepage" placeholder=""
+                                                class="search_init"
+                                        /></label></th>
+                        <th>Телефон<label><input type="text" name="search_version" placeholder=""
+                                                 class="search_init"
+                                        /></label></th>
+                        <th>Цена Б<label><input type="text" name="search_version" placeholder=""
+                                                class="search_init"
+                                        /></label></th>
+                        <th>Текст <label><input type="text" name="search_version" placeholder=""
+                                                class="search_init"
+                                        /></label></th>
+                        <th>Гео <label><input type="text" name="search_version" placeholder=""
+                                              class="search_init"
+                                        /></label></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for offer in user.offers %}
+                        <tr>
+                            <td>{{ offer.unix_timestamp }}</td>
+                            <td>{{ offer.mark }}</td>
+                            <td>{{ offer.year }}</td>
+                            <td><a href="{{ offer.link }}">{{ offer.link|slice(0,30) }}</a></td>
+                            <td>{{ offer.price_ad }} тр</td>
+                            <td>{{ offer.phone }}</td>
+                            <td>{{ offer.price_offer }} тр</td>
+                            <td>{{ offer.txt }}</td>
+                            <td>{{ offer.geo }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Модель</th>
+                        <th>Год</th>
+                        <th>Ссылка</th>
+                        <th>Цена продавца</th>
+                        <th>Телефон</th>
+                        <th>Предложенная цена</th>
+                        <th>Текст сообщения</th>
+                        <th>Гео</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        function AllTables() {
+            TestTable1();
+            for (var i = 0; i<{{ users|length }}; i++)
+                TestTable2(i);
+            TestTable3();
+            LoadSelect2Script(MakeSelect2);
+        }
+
+        function MakeSelect2() {
+            $('select').select2();
+            $('.dataTables_filter').each(function () {
+                $(this).find('label input[type=text]').attr('placeholder', 'Search');
+            });
+        }
+
+        // Load Datatables and run plugin on tables
+        LoadDataTablesScripts(AllTables);
+
+        // Add Drag-n-Drop feature
+        WinMove();
+    });
+</script>

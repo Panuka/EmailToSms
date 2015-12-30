@@ -1,0 +1,2 @@
+a:10:{s:8:"httpauth";a:2:{i:0;N;i:1;s:6:"323232";}s:4:"text";s:14:"test message
+";s:6:"parser";a:1:{i:0;s:16:"agentrol@mail.ru";}s:5:"smsru";s:36:"61e4f644-540e-5104-5d40-f067915e62e7";s:7:"maillog";s:13:"gmod@inbox.ru";s:8:"mailpass";s:8:"fabien32";s:2:"on";b:1;s:4:"file";s:10:"skript.xls";s:11:"min_balance";a:4:{i:0;s:3:"100";i:1;s:2:"50";i:2;s:2:"25";s:5:"phone";s:3:"100";}s:6:"report";s:13:"gmod@inbox.ru";}

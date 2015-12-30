@@ -1,0 +1,74 @@
+.log {
+    width: 634px;
+    margin: 45px auto;
+    border: 1px solid #ddd;
+    -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.35);
+    -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.35);
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.35);
+}
+
+.log {
+    height: 350px;
+    width: 545px;
+    border: none;
+    overflow: overlay;
+}
+.log pre {
+    word-wrap: break-word;
+    padding-right: 20px;
+    margin-bottom: 0;
+}
+
+.main-admin-form {
+    padding-top: 200px;
+}
+
+h1 {
+    color: #fff;
+}
+
+table tr>td:first-child {
+    vertical-align: middle;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 1px solid rgba(221, 221, 221, 0.09);
+}
+
+.table {
+    color: #fff;
+}
+
+table .btn.btn-primary {
+    color: #fff;
+}
+
+form table .form-control {
+    color: #131313;
+    border: none;
+}
+
+header .navbar-default .navbar-brand img {
+    max-height: 100px;
+}
+
+.tp-banner-container {
+    height: auto !important;
+}
+
+.table-responsive {
+    border: none !important;
+}
+
+[multiple="multiple"] {
+    height: 100px !important;
+    border-radius: 6px !important;
+}
+
+.tp-banner.revslider-initialised.tp-simpleresponsive {
+    height: auto !important;
+}
+
+form .form-control {
+    padding: 0 20px !important;
+}

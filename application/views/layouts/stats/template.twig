@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        logurl = '/assets/ajax/';
+    </script>
+    <meta charset="utf-8">
+    <title>DevOOPS</title>
+    <meta name="description" content="description">
+    <script src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/slick.min.js"></script>
+    <script src="/assets/js/placeholdem.min.js"></script>
+    <script src="/assets/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="/assets/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/assets/js/waypoints.min.js"></script>
+    <meta name="author" content="DevOOPS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href="/assets/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="/assets/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="/assets/plugins/xcharts/xcharts.min.css" rel="stylesheet">
+    <link href="/assets/plugins/select2/select2.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    {#<script src="/assets/plugins/jquery/jquery-2.1.0.min.js"></script>#}
+    <script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
+    <script src="/assets/plugins/tinymce/tinymce.min.js"></script>
+    <script src="/assets/plugins/tinymce/jquery.tinymce.min.js"></script>
+    <script src="/assets/js/scripts.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+    <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="screensaver">
+    <canvas id="canvas"></canvas>
+    <i class="fa fa-lock" id="screen_unlock"></i>
+</div>
+<div id="modalbox">
+    <div class="devoops-modal">
+        <div class="devoops-modal-header">
+            <div class="modal-header-name">
+                <span>Basic table</span>
+            </div>
+            <div class="box-icons">
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="devoops-modal-inner">
+        </div>
+        <div class="devoops-modal-bottom">
+        </div>
+    </div>
+</div>
+<header class="navbar">
+    <div class="container-fluid expanded-panel">
+        <div class="row">
+            <div id="logo" class="col-xs-12 col-sm-12">
+                <a href="/">Back</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="main" class="container-fluid">
+    <div class="row">
+        <div id="sidebar-left" class="col-xs-2 col-sm-2">
+            <ul class="nav main-menu">
+                <li>
+                    <a href="/assets/ajax/dashboard.html" class="ajax-link">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="hidden-xs">[ {{ user.username }} ]</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/assets/ajax/" class="active ajax-link">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="hidden-xs">Статистика</span>
+                    </a>
+                </li>
+                {#<li>#}
+                    {#<a href="/data/users/<?=$USER?>/log.csv" target="_blank">#}
+                        {#<i class="fa fa-dashboard"></i>#}
+                        {#<span class="hidden-xs">Скачать все данные</span>#}
+                    {#</a>#}
+                {#</li>#}
+                <li>
+                    <a href="/auth/logout/" target="_blank">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="hidden-xs">Выход</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="content" class="col-xs-12 col-sm-10">
+            <div class="preloader">
+                <img src="/assets/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader"/>
+            </div>
+            <div id="ajax-content"></div>
+        </div>
+    </div>
+</div>
+<script src="/assets/js/devoops.js"></script>
+</body>
+</html>

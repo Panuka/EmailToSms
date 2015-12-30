@@ -1,0 +1,68 @@
+{% extends "layouts/admin/template.twig" %}
+{% block main_content %}
+    {% for u in users %}
+        <form method="POST" action="?edit={{ u.id }}">
+            <div class="row">
+                <div class="container">
+                    <table cellspacing="0" border="0" class="table">
+                        <tr>
+                            <td><label for="httplog">Логин</label></td>
+                            <td><input class="form-control" type="text" id="httplog" name="login" value="{{ u.username }}"
+                                       disabled="disabled"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="httppass">Пароль</label></td>
+                            <td><input class="form-control" type="password" id="httppass" name="password"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="httppass">Удалить</label></td>
+                            <td><input class="form-control" type="checkbox" id="httppass" name="delete"
+                                       style="width: auto;"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                <a href="#create" class="btn btn-default copybtn" data-user="{{ u.id }}">Скопировать</a>
+                                <a href="/web/log_in/{{ u.id }}/" class="btn btn-default">Войти</a>
+                                <input class="btn btn-primary" type="submit" value="Сохранить
+                                пользователя {{ u.username }}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+    <form method="POST" action="?create=1" id="create">
+        <div class="row">
+            <div class="container">
+                <table cellspacing="0" border="0" class="table">
+                    <tr>
+                        <td><label for="httplog">Логин</label></td>
+                        <td><input class="form-control" type="text" id="httplog" name="login" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="httppass">Пароль</label></td>
+                        <td>
+                            <input class="form-control" type="password" id="httppass" value="" name="password">
+                            <input type="hidden" name="copyid" id="copyid" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="right"><input class="btn btn-primary" type="submit" value="Добавить
+							пользователя"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('.copybtn').click(function () {
+                $('#copyid').val($(this).data('user'));
+            });
+        });
+
+    </script>
+{% endblock %}

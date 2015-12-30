@@ -1,0 +1,805 @@
+
+== Запуск скрипта [22/10/15 19:19] ==
+грузим файлОбновлен кеш файла таблицы!
+проверяем почтуbalance: 705== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:20] ==
+грузим файлОбновлен кеш файла таблицы!
+проверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79872388987</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79872388987, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.6267</credits>
+<amount>0.94</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 704array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+balance: 703Добавлено в лог:
+1445530812;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;1229;79872388987;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445530812;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;120;79376254210;100;Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:21] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79872388987</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79872388987, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.6267</credits>
+<amount>0.94</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 703array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+balance: 703Добавлено в лог:
+1445530868;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;1229;79872388987;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445530868;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;120;79376254210;100;Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:22] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79520300202</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79520300202, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.4333</credits>
+<amount>0.65</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747
+balance: 703Добавлено в лог:
+1445530927;Ford Focus;2007;http://www.avito.ru/kazan/avtomobili/ford_focus_2007_664449244;287;79520300202;200;Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:23] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79872388987</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79872388987, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.6267</credits>
+<amount>0.94</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 703array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+balance: 703Добавлено в лог:
+1445530990;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;1229;79872388987;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445530990;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;120;79376254210;100;Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:24] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79872388987</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79872388987, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.6267</credits>
+<amount>0.94</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 703array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+balance: 703Добавлено в лог:
+1445531051;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;1229;79872388987;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445531051;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;120;79376254210;100;Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:25] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79872388987</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79872388987, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.6267</credits>
+<amount>0.94</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 703array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+balance: 703Добавлено в лог:
+1445531111;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;1229;79872388987;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445531111;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;120;79376254210;100;Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:26] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79872388987</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79872388987, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.6267</credits>
+<amount>0.94</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 703array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+balance: 703Добавлено в лог:
+1445531172;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;1229;79872388987;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445531172;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;120;79376254210;100;Здравствуйте! Предлагаю купить Ваш автомобиль за 100т.р. 89600479747
+
+balance: 703== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:46] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 699array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79601810050</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79601810050, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8333</credits>
+<amount>1.25</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747
+balance: 698Добавлено в лог:
+1445532377;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;229;79376254210;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445532377;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;260;79601810050;200;Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747
+
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:47] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:48] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:49] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:50] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:51] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:52] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:53] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:54] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:55] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:56] ==
+грузим файлпроверяем почтуarray(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79376254210</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79376254210, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8133</credits>
+<amount>1.22</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+balance: 698array(1) {
+  [0]=>
+  string(18) "Татарстан"
+}
+<?xml version="1.0" encoding="UTF-8"?>
+			    <SMS>
+			        <operations>
+			        <operation>SEND</operation>
+			        </operations>
+			        <authentification>
+			        <username>mikle_89@mail.ru</username>
+			        <password>98915091123skript</password>
+			        </authentification>
+			        <message>
+			        <sender>SMS</sender>
+			        <text>Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747</text>
+			        </message>
+			        <numbers>
+			        <number messageID="msg11">79601810050</number>
+			        </numbers>
+			    </SMS>Отправлено сообщение 79601810050, статус <?xml version="1.0" encoding="UTF-8"?>
+<RESPONSE>
+<status>1</status>
+<credits>0.8333</credits>
+<amount>1.25</amount>
+<currency>RUR</currency>
+</RESPONSE>
+:
+== / ===
+Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747
+balance: 698Добавлено в лог:
+1445532976;Chevrolet Aveo;2008;http://kazan.irr.ru/cars/passenger/Chevrolet-Aveo-hetchbek-2008-g-v-probeg-65000-km-advert514794435.html;229;79376254210;170;Здравствуйте! Предлагаю купить Ваш автомобиль за 170т.р. 89600479747
+
+Добавлено в лог:
+1445532976;Chevrolet Lacetti;2010;http://kazan.drom.ru/chevrolet/lacetti/19720030.html;260;79601810050;200;Здравствуйте! Предлагаю купить Ваш автомобиль за 200т.р. 89600479747
+
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:57] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:58] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 19:59] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:00] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:01] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:02] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:03] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:04] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:05] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:06] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:07] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:08] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:09] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:10] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:11] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:12] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:13] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:14] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:15] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:16] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:17] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:18] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:19] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:20] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:21] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:22] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:23] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:24] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:25] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:26] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:27] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:28] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:29] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:30] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+Отправляем отчет...
+1-- --
+Отправляем отчет...
+1-- --
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:31] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:32] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:33] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:34] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:35] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:36] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:37] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:38] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==
+
+== Запуск скрипта [22/10/15 20:39] ==
+грузим файлпроверяем почтуНовых сообщений нет!
+balance: 698== Остановка скрипта ==

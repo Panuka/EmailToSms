@@ -1,0 +1,192 @@
+{% extends "layouts/admin/template.twig" %}
+{% block main_content %}
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="container">
+                <table cellspacing="0" border="0" class="table table-responsive" width="634px">
+                    <tr class="form-group">
+                        <td><label for="text">Текст сообщения</label><br>
+                            %MODEL% - модель автомобиля;
+                            %SUMM% - сумма из шаблона.
+                        </td>
+                        <td><textarea class="form-control" id="text" name="text" rows="3"
+                                      cols="40">{{ user.text }}</textarea></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="file">.xls / .xlsx</label></td>
+                        <td>
+                            <div class="form-group">
+                                <label>
+                                    {% if user.file is not null %}
+                                        Текущий файл: [{{ user.file }}]
+                                    {% else %}
+                                        Файл не загружен
+                                    {% endif %}
+                                </label>
+                                <input type="file" id="file" name="file">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="on">Включить/выключить</label></td>
+                        <td>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input class="form-control" type="checkbox" id="on" name="on" style="width: auto;"
+                                           {% if user.sys_active %}checked="checked"{% endif %}>
+                                </label>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="parser">Email парсера, с которого приходят сообщения</label></td>
+                        <td><input class="form-control" type="text" id="parser" name="parser"
+                                   value="{{ user.parser }}" placeholder="parser@mail.ru"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="geo">Гео-таргетинг</label><br>
+                            Фильтрует сообщения по местоположению.
+                            Пусто - не фильтрует.
+                        </td>
+                        <td><input class="form-control" type="text" id="geo" name="geo"
+                                   value="{{ user.geo }}"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="report">Email для отчетов</label><br>
+                            Для множественной рассылки - через запятую.
+                        </td>
+                        <td><input class="form-control" type="text" id="report" name="report"
+                                   value="{{ user.report }}" placeholder="mail@mail.ru"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="mail_theme_1">Тема письма (сутки)</label><br>
+                            %DATE% - дата
+                        </td>
+                        <td><input class="form-control" type="text" id="mail_theme_1"
+                                   name="mail_theme_1"
+                                   value="{{ user.mail_theme_1 }}"
+                                   placeholder="Тема письма"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="report_time">Отчет за сутки </label></td>
+                        <td>
+                            <select class="form-control" id="report_time" name="report_time[]" multiple="multiple">
+                                <option value="false">Выключить</option>
+                                {% for h in 0..23 %}
+                                    {% for m in [0,30] %}
+                                        <option value="{{ h }}:{{ m }}"
+                                                {% if "#{h}:#{m}" in user.report_time %}
+                                            selected="selected"
+                                                {% endif %}>
+                                            {{ '%02d:%02d'|format(h, m) }}
+                                        </option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="mail_theme_2">Тема письма (полный отчет)</label></td>
+                        <td><input class="form-control" type="text" id="mail_theme_2"
+                                   name="mail_theme_2"
+                                   value="{{ user.mail_theme_2 }}" placeholder="Тема письма"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="report_time_single">Полная выгрузка </label></td>
+                        <td>
+                            <select class="form-control" id="report_time_single"
+                                    name="report_time_single[]" multiple="multiple">
+                                <option value="false">Выключить</option>
+                                {% for h in 0..23 %}
+                                    {% for m in [0,30] %}
+                                        <option value="{{ h }}:{{ m }}"
+                                                {% if "#{h}:#{m}" in user.report_time_single %}
+                                            selected="selected"
+                                                {% endif %}>
+                                            {{ '%02d:%02d'|format(h, m) }}
+                                        </option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    {% for milestone in user.min_balance_milestones %}
+                        <tr class="form-group">
+                            <td><label for="min_balance{{ loop.index }}">Минимальный баланс [{{ loop.revindex }}
+                                    ]</label></td>
+                            <td><input class="form-control" type="text" id="min_balance{{ loop.index }}"
+                                       name="min_balance[{{ loop.index0 }}]"
+                                       value="{{ user.min_balance_milestones[loop.index0] }}"
+                                       placeholder="{{ loop.revindex*25 }}"></td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="form-group">
+                        <td><label for="min_balance">Номер для уведомления</label></td>
+                        <td><input class="form-control" type="text" id="min_balance"
+                                   name="min_balance_phone"
+                                   value="{{ user.min_balance_phone }}"
+                                   placeholder="100"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="pzc">Почта для экстренных оповещений</label></td>
+                        <td><input class="form-control" type="text" id="pzc"
+                                   name="pzc"
+                                   value="{{ user.pzc }}"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="mail_login">Логин почты</label></td>
+                        <td><input class="form-control" type="email" id="mail_login" name="mail_login"
+                                   value="{{ user.mail_login }}"
+                                   placeholder="name@mail.ru"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="mail_pass">Пароль почты</label></td>
+                        <td><input class="form-control" type="password" id="mail_pass" name="mail_pass"
+                                   value="{{ user.mail_pass }}" placeholder="password"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="statpass">Пароль статистики (опционально)</label></td>
+                        <td><input class="form-control" type="password" id="statpass" name="statpass" disabled="disabled"
+                                   value="{{ user.httpauth }}"></td>
+                    </tr>
+
+                    <tr class="form-group">
+                        <td><label for="pubkey">Публиный ключ (sms)</label></td>
+                        <td><input class="form-control" type="text" id="pubkey" name="pub_key"
+                                   value="{{ user.pub_key }}"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td><label for="privkey">Приватный ключ (sms)</label></td>
+                        <td><input class="form-control" type="text" id="privkey" name="priv_key"
+                                   value="{{ user.priv_key }}"></td>
+                    </tr>
+
+
+                    <tr class="form-group">
+                        <td></td>
+                        <td align="right"><input type="submit" value="Сохранить" class="btn btn-primary"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block after_content %}
+    <section id="about" style="background: url('../img/freeze/bk-freeze.jpg');">
+        <div class="container">
+            <div class="section-heading scrollpoint sp-effect3">
+                <h1>Log</h1>
+
+                <div class="divider"></div>
+                <p></p>
+            </div>
+
+            <div class="log">
+                <pre>{% for log in logs %}{{ log.log }}<br>{% endfor %}</pre>
+            </div>
+        </div>
+    </section>
+{% endblock %}

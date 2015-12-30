@@ -1,0 +1,6 @@
+Deny from all
+
+<FilesMatch ".*\.(xls|xlsx)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
