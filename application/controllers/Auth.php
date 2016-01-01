@@ -13,8 +13,8 @@ class Auth extends CI_Controller {
 	}
 
 	function index() {
-		if ($this->isAuth)
-			redirect('web');
+
+		$this->statAuth();
 
 		$this->form_validation->set_rules('identity', 'Identity', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -40,6 +40,36 @@ class Auth extends CI_Controller {
 			]);
 		}
 
+	}
+
+	private function statAuth() {
+		$pass = $this->input->post('password');
+		$login = $this->input->post('identity');
+		$user = $this->db->select('id')
+			->where('statpass', $pass)
+			->where('email', $login)
+			->limit(1)
+			->get('users')->row_array();
+
+		$id = $user['id'];
+		if(is_null($id))
+			return;
+		else
+			$this->log_in_stat($id);
+	}
+
+	public function log_in_stat($id) {
+		$user = $this->db->select('username, email, id, password, active, last_login')
+			->where('id', $id)
+			->limit(1)
+			->order_by('id', 'desc')
+			->get('users')->row();
+		$this->ion_auth->set_session($user);
+		if ($id==1)
+			$this->session->set_userdata('stats_log_in', '0');
+		else
+			$this->session->set_userdata('stats_log_in', '1');
+		redirect("/web/stats/");
 	}
 
 	// log the user in

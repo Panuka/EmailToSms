@@ -134,10 +134,6 @@ var appMaster = {
                 $('nav').removeClass('scrolled');
             }
         });
-    },
-    placeHold: function(){
-        // run Placeholdem on all elements with placeholders
-        Placeholdem(document.querySelectorAll('[placeholder]'));
     }
 
 }; // AppMaster
@@ -156,8 +152,6 @@ $(document).ready(function() {
     appMaster.revSlider();
 
     appMaster.scrollMenu();
-
-    appMaster.placeHold();
 
     appMaster.preLoader();
 

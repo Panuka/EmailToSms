@@ -6,24 +6,33 @@ class Web extends CI_Controller {
 	private $isAuth = null;
 	private $user = null;
 
+	private $stats_auth = false;
+	private $force_auth = false;
+
+
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
-		$this->load->library(array('ion_auth', 'twig'));
+		$this->load->library(array('ion_auth', 'twig', 'session'));
+		$this->force_auth = $this->session->userdata('force_log_in');
+		$this->stats_auth = $this->session->userdata('stats_log_in')==1;
 
-		if (!$this->ion_auth->logged_in())
-			redirect('auth');
+		$isNotLoggedIn = !$this->ion_auth->logged_in();
+		$isNotStatsView = !$this->stats_auth;
+		if ($isNotLoggedIn && $isNotStatsView)
+			$this->needAuth();
 		$this->getUser(true);
 //		$this->output->enable_profiler(TRUE);
 	}
 
 	public function index() {
+		if ($this->stats_auth)
+			redirect('/web/stats/');
+
 		if ($this->input->server('REQUEST_METHOD')=='POST') {
 			$update = [];
 			$data = $this->input->get_post(null);
-
-			// Активность
 
 			// Время отчета
 			if (isset($data['report_time']))
@@ -50,9 +59,10 @@ class Web extends CI_Controller {
 			} else
 				$data['file'] = null;
 			$data = array_filter($data);
-			if (isset($data['on']))
-				$data['sys_active'] = true;
-			else
+			if (isset($data['on'])) {
+				$data[ 'sys_active' ] = true;
+				$data[ 'active_time' ] = date('Y-m-d H:i:s');
+			} else
 				$data['sys_active'] = false;
 			unset($data['on']);
 			$update['upd'] = $this->db->update('users', $data, "id = {$this->user['id']}");
@@ -78,14 +88,15 @@ class Web extends CI_Controller {
 			'isAdmin'	=> $this->ion_auth->is_admin(),
 			'user'		=> $this->getUser(),
 			'logs'		=> $logs,
-			'title'		=> 'Настройки'
+			'title'		=> 'Настройки',
+			'force'     => $this->force_auth
 		];
 		$this->twig->render('index', $params);
 	}
 
 	public function admin() {
 		if (!$this->ion_auth->is_admin())
-			redirect('index');
+			redirect('/web/');
 
 		$edit 	= $this->input->get('edit');
 		$create = $this->input->get('create');
@@ -146,7 +157,11 @@ class Web extends CI_Controller {
 			->order_by('id', 'desc')
 			->get('users')->row();
 		$this->ion_auth->set_session($user);
-		redirect('/web/');
+		if ($id==1)
+			$this->session->set_userdata('force_log_in', '0');
+		else
+			$this->session->set_userdata('force_log_in', '1');
+		redirect('/web/admin/');
 	}
 
 	public function ajax_index() {
@@ -205,6 +220,10 @@ class Web extends CI_Controller {
 		foreach ($_users->result_array() as $user)
 			$users[] = $user;
 		return $users;
+	}
+
+	private function needAuth() {
+		redirect('auth');
 	}
 
 }

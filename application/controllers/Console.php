@@ -19,6 +19,7 @@ class Console extends CI_Controller {
 	private $user;
 	private $api_private;
 	private $api_public;
+	private $web = false;
 	public $URL_GAREWAY = 'http://atompark.com/api/sms/';
 
 	function __construct() {
@@ -38,8 +39,11 @@ class Console extends CI_Controller {
 	public function exec() {
 		$users = $this->getUsers();
 		foreach ($users as $user) {
+			// Запускаем обработку пользователя
 			$this->START_ACTIVITY($user);
+			// проверяем баланс
 			$this->checkBalance();
+			//
 			$this->processUser();
 			$this->sendMessages();
 			$this->writeStats();
@@ -84,7 +88,7 @@ class Console extends CI_Controller {
 	}
 
 	private function loadCars() {
-		if (is_null($this->user[ 'parsed_file' ])) {
+		if (is_null($this->user[ 'parsed_file' ])||!isset($this->user[ 'parsed_file' ][ 10 ])) {
 			$file_path = FCPATH . 'uploads/' . $this->user[ 'file' ];
 			$this->xls = PHPExcel_IOFactory::load($file_path);
 			$this->convertToArray();
@@ -159,7 +163,10 @@ class Console extends CI_Controller {
 			$_mail = $this->db->get_where('mails', array('user_id' => $this->user[ 'id' ], 'mail_id' => $mailId, 'status' => 0))->row_array();
 			if (!is_null($_mail)) continue;
 			$mail = $mailbox->getMail($mailId);
-			$mail_id = $this->db->insert('mails', ['user_id' => $this->user[ 'id' ], 'mail_id' => $mailId, 'theme' => $mail->subject, 'data' => $mail->textHtml . $mail->textPlain, 'date' => $mail->date,]);
+
+			if (strtotime($mail->date) < $this->user['active_time'])
+				return $this->toLog("Сообщение получено до активации аккаунта");
+			$this->db->insert('mails', ['user_id' => $this->user[ 'id' ], 'mail_id' => $mailId, 'theme' => $mail->subject, 'data' => $mail->textHtml . $mail->textPlain, 'date' => $mail->date,]);
 			$this->current_mail = $this->db->insert_id();
 			if ($this->inarr($mail->fromAddress, $this->user[ 'parser' ])) {
 				$this->toLog("Обрабатываем почтовое событие: {$this->current_mail}");
@@ -226,25 +233,18 @@ class Console extends CI_Controller {
 		return false;
 	}
 
-	public function sendReport($time = "12 HOUR", $theme) {
-		$this->load->dbutil();
-		$query = $this->db->query("SELECT id, unix_timestamp as `Время`, mark as `Модель`,year as `Год`,link as `Ссылка`,price_ad as `Цена объявления`,price_offer as `Цена предложения`,phone as `Телефон`,txt as `SMS`,geo as `Гео`,kpp_type as `Тип КПП` FROM offers WHERE unix_timestamp >= (CURRENT_DATE-INTERVAL $time)");
-		$csv = $this->dbutil->csv_from_result($query);
-		$csv = mb_convert_encoding($csv, 'CP1251', 'UTF-8');
-		$path = FCPATH . 'uploads/' . $this->user[ 'id' ] . '_data.csv';
-		file_put_contents($path, $csv);
-		$objReader = \PHPExcel_IOFactory::createReader('CSV');
-// If the files uses a delimiter other than a comma (e.g. a tab), then tell the reader
-		$objReader->setDelimiter(",");
-// If the files uses an encoding other than UTF-8 or ASCII, then tell the reader
-		$objReader->setInputEncoding('CP1251');
-		$objPHPExcel = $objReader->load($path);
-		//\PHPExcel_Shared_Font::setAutoSizeMethod(\PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT);
-		$d = array('A' => 3, 'B' => 10, 'C' => 25, 'D' => 5, 'E' => 86, 'F' => 15, 'G' => 20, 'H' => 15, 'I' => 48, 'J' => 58);
-		foreach ($d as $col => $val) $objPHPExcel->getActiveSheet()->getColumnDimension($col)->setWidth($val);
-		$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-		$objPHPExcel->getActiveSheet()->getStyle('G2:G100')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
-		$objWriter->save($path);
+	public static function reportSelectQuery($user) {
+		return "SELECT
+				@rank:=@rank+1 AS id, unix_timestamp as 'Время', mark as 'Модель', year as 'Год', link as 'Ссылка',
+				price_ad as 'Цена объявления', price_offer as 'Цена предложения',phone as 'Телефон',
+				txt as 'SMS', geo as 'Гео', kpp_type as 'Тип КПП'
+			FROM
+				offers
+			WHERE user = $user";
+	}
+
+	public function sendReport($theme = "Отчет", $time = null) {
+		$path = $this->createCsvReport($time);
 		$email = $this->createMail();
 		$email->Subject = $theme;
 		$email->Body = "Отчет о рассылке с парсера";
@@ -271,7 +271,7 @@ class Console extends CI_Controller {
 		$email->Port = 465;
 		$email->CharSet = 'utf-8';
 		$email->From = $this->user[ 'mail_login' ];
-		$email->FromName = 'SMS-Sender';
+		$email->FromName = 'SMS-Sender [test]';
 		return $email;
 	}
 
@@ -309,13 +309,36 @@ class Console extends CI_Controller {
 		return $this->sendMsg("Минимальный баланс! $balance", $phone);
 	}
 
-	private function toFile($name, $data, $flag = null) {
-		file_put_contents($this->data . $name, json_encode($data), $flag);
-	}
-
-	private function fromFile($name, $json = false) {
-		if ($json) return json_decode(file_get_contents($this->data . $name), true); else
-			return file_get_contents($this->data . $name);
+	public function createCsvReport($time=null) {
+		if (!isset($this->user['id'])) {
+			$this->load->library(array('ion_auth'));
+			if (is_null($this->user = $this->ion_auth->user()->row_array()))
+				$this->toLog("Не удалось определить пользователя");
+			else
+				$this->web = true;
+		}
+		$this->load->dbutil();
+		$this->db->query("SET @rank=0;");
+		$query = self::reportSelectQuery($this->user[ 'id' ]);
+		if (!is_null($time)) $query .= " AND unix_timestamp >= (CURRENT_DATE-INTERVAL $time)";
+		$query = $this->db->query($query);
+		$csv = $this->dbutil->csv_from_result($query);
+		$csv = mb_convert_encoding($csv, 'CP1251', 'UTF-8');
+		$path = FCPATH . 'uploads/' . $this->user[ 'id' ] . '_data.csv';
+		file_put_contents($path, $csv);
+		$objReader = \PHPExcel_IOFactory::createReader('CSV');
+		$objReader->setDelimiter(",");
+		$objReader->setInputEncoding('CP1251');
+		$objPHPExcel = $objReader->load($path);
+		$d = array('A' => 3, 'B' => 10, 'C' => 25, 'D' => 5, 'E' => 86, 'F' => 15, 'G' => 20, 'H' => 15, 'I' => 48, 'J' => 58);
+		foreach ($d as $col => $val) $objPHPExcel->getActiveSheet()->getColumnDimension($col)->setWidth($val);
+		$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objPHPExcel->getActiveSheet()->getStyle('G2:G100')->getNumberFormat()->setFormatCode(\PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		$objWriter->save($path);
+		if ($this->web)
+			redirect((substr($path, strpos($path, '/uploads/'))));
+		else
+			return $path;
 	}
 
 	private function getGeoFromNumber($number) {
@@ -346,10 +369,6 @@ class Console extends CI_Controller {
 		// пишем в лог
 		$this->toLog('Не удалось определить гео');
 		$this->toLog('ЭКСТРЕННОЕ ЗАВЕРШЕНИЕ!');
-		// удаляем данные из проверки
-		$old = $this->fromFile('mail_checker');
-		$new = str_replace($this->current_mail, '', $old);
-		file_put_contents($this->data . 'mail_checker', $new);
 		$this->END_ACTIVITY();
 		die();
 	}
@@ -381,7 +400,7 @@ class Console extends CI_Controller {
 
 	private function START_ACTIVITY($user) {
 		$this->user = $this->prepareUser($user);
-		if (!$this->user[ 'active' ]) return;
+		if (!$this->user[ 'active_sys' ]) return;
 		ob_start();
 		$date = \date('d/m/y H:i');
 		$this->toLog("== << {$this->user['username']} >> ==");
@@ -437,8 +456,11 @@ class Console extends CI_Controller {
 		$h = date('G');
 		$m = date('i');
 		if ($m == 30||$m == 0) {
-			foreach ($this->user[ 'report_time' ] as $r) if ("$h:$m" == $r) $this->sendReport("24 HOUR", str_replace("%DATE%", \date('d/m/Y'), $this->user[ 'mail_theme_1' ]));
-			foreach ($this->user[ 'report_time_single' ] as $r) if ("$h:$m" == $r) $this->sendReport("1 YEAR", $this->user[ 'mail_theme_2' ]);
+			$time = "$h:$m";
+			foreach ($this->user[ 'report_time' ] as $r) if ($time == $r) $this->sendReport(str_replace("%DATE%",
+				\date('d/m/Y'), $this->user[ 'mail_theme_1' ]), "24 HOUR");
+			foreach ($this->user[ 'report_time_single' ] as $r) if ($time == $r) $this->sendReport($this->user[ 'mail_theme_2' ]);
 		}
 	}
+
 }

@@ -86,12 +86,12 @@
                         <span class="hidden-xs">Статистика</span>
                     </a>
                 </li>
-                {#<li>#}
-                    {#<a href="/data/users/<?=$USER?>/log.csv" target="_blank">#}
-                        {#<i class="fa fa-dashboard"></i>#}
-                        {#<span class="hidden-xs">Скачать все данные</span>#}
-                    {#</a>#}
-                {#</li>#}
+                <li>
+                    <a href="/console/createCsvReport" target="_blank">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="hidden-xs">Скачать все данные по аккаунту</span>
+                    </a>
+                </li>
                 <li>
                     <a href="/auth/logout/" target="_blank">
                         <i class="fa fa-dashboard"></i>
