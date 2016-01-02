@@ -60,8 +60,10 @@ class Web extends CI_Controller {
 				$data['file'] = null;
 			$data = array_filter($data);
 			if (isset($data['on'])) {
-				$data[ 'sys_active' ] = true;
-				$data[ 'active_time' ] = date('Y-m-d H:i:s');
+				if (!$this->user['sys_active']) {
+					$data[ 'sys_active' ] = true;
+					$data[ 'active_time' ] = date('Y-m-d H:i:s');
+				}
 			} else
 				$data['sys_active'] = false;
 			unset($data['on']);

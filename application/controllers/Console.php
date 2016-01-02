@@ -102,7 +102,6 @@ class Console extends CI_Controller {
 	public function sendMsg($msg, $phone) {
 		if ($phone[ 0 ] == 8) $phone = substr_replace($phone, '+7', 0, 1);
 		$msg = iconv(mb_detect_encoding($msg), 'UTF-8', $msg);
-		return;
 		$this->getSms()->execCommad('sendSMS', array('sender' => 'SMS', 'sms_lifetime' => 0, 'text' => $msg, 'phone' => $phone,));
 	}
 
@@ -142,7 +141,11 @@ class Console extends CI_Controller {
 			$this->toLog("=====");
 		}
 		$cars = array();
-		$obj = $xml->tr;
+		if (isset($xml->tbody))
+			$obj = $xml->tbody->tr;
+		else
+			$obj = $xml->tr;
+
 		foreach ($obj as $_tr) {
 			$cols = $_tr->td;
 			if (!is_null($cols[ 0 ])) {
@@ -163,9 +166,8 @@ class Console extends CI_Controller {
 			$_mail = $this->db->get_where('mails', array('user_id' => $this->user[ 'id' ], 'mail_id' => $mailId, 'status' => 0))->row_array();
 			if (!is_null($_mail)) continue;
 			$mail = $mailbox->getMail($mailId);
-
-			if (strtotime($mail->date) < $this->user['active_time'])
-				return $this->toLog("Сообщение получено до активации аккаунта");
+			if (strtotime($mail->date) < strtotime($this->user['active_time']))
+				continue;
 			$this->db->insert('mails', ['user_id' => $this->user[ 'id' ], 'mail_id' => $mailId, 'theme' => $mail->subject, 'data' => $mail->textHtml . $mail->textPlain, 'date' => $mail->date,]);
 			$this->current_mail = $this->db->insert_id();
 			if ($this->inarr($mail->fromAddress, $this->user[ 'parser' ])) {
@@ -400,7 +402,7 @@ class Console extends CI_Controller {
 
 	private function START_ACTIVITY($user) {
 		$this->user = $this->prepareUser($user);
-		if (!$this->user[ 'active_sys' ]) return;
+		if (!$this->user[ 'sys_active' ]) return;
 		ob_start();
 		$date = \date('d/m/y H:i');
 		$this->toLog("== << {$this->user['username']} >> ==");
