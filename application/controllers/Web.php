@@ -55,7 +55,7 @@ class Web extends CI_Controller {
 			$update['file'] = $this->do_upload('file');
 			if ($update['file']['status']) {
 				$data['file'] = $update['file']['upload_data']['file_name'];
-				$data['parsed_file'] = null;
+				$data['parsed_file'] = "";
 			} else
 				$data['file'] = null;
 			$data = array_filter($data);

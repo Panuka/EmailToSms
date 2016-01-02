@@ -18,7 +18,9 @@
                             <div class="form-group">
                                 <label>
                                     {% if user.file is not null %}
-                                        Текущий файл: [{{ user.file }}]
+                                        Текущий файл: [<a style="color:#ddd" href="/uploads/{{ user.file }}">{{ user
+                                        .file
+                                        }}</a>]
                                     {% else %}
                                         Файл не загружен
                                     {% endif %}

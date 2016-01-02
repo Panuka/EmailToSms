@@ -33,6 +33,7 @@ class Console extends CI_Controller {
 		$user[ 'parser' ] = explode(',', $user[ 'parser' ]);
 		$user[ 'min_balance_milestones' ] = json_decode($user[ 'min_balance_milestones' ], true);
 		$user[ 'report' ] = explode(',', $user[ 'report' ]);
+		$user[ 'geo' ] = explode(',', $user[ 'geo' ]);
 		return $user;
 	}
 
@@ -102,6 +103,7 @@ class Console extends CI_Controller {
 	public function sendMsg($msg, $phone) {
 		if ($phone[ 0 ] == 8) $phone = substr_replace($phone, '+7', 0, 1);
 		$msg = iconv(mb_detect_encoding($msg), 'UTF-8', $msg);
+		return;
 		$this->getSms()->execCommad('sendSMS', array('sender' => 'SMS', 'sms_lifetime' => 0, 'text' => $msg, 'phone' => $phone,));
 	}
 
@@ -109,9 +111,9 @@ class Console extends CI_Controller {
 		foreach ($this->msg as $i => $msg) {
 			$msg_geo = strtolower($msg[ 'geo' ]);
 			$this->toLog("Гео продовца: " . $msg_geo);
-			if (isset($this->geo)) if (!empty($this->geo)) if (count($this->geo) > 0) {
+			if (!empty($this->user['geo']) && count($this->user['geo']) > 0) {
 				$bad = true;
-				foreach ($this->geo as $geo) {
+				foreach ($this->user['geo'] as $geo) {
 					$this->toLog("Сверяем гео: $msg_geo | $geo");
 					if (stripos($msg_geo, $geo) !== false) $bad = false;
 				}
@@ -273,7 +275,7 @@ class Console extends CI_Controller {
 		$email->Port = 465;
 		$email->CharSet = 'utf-8';
 		$email->From = $this->user[ 'mail_login' ];
-		$email->FromName = 'SMS-Sender [test]';
+		$email->FromName = 'SMS-Sender';
 		return $email;
 	}
 
@@ -377,9 +379,6 @@ class Console extends CI_Controller {
 
 	private function smsDown($data) {
 		switch ($data[ 'code' ]) {
-			case 28:
-				$this->toLog("Ошибка в смс (28)");
-				break;
 			default:
 				// создаем письмо
 				$email = $this->createMail();
@@ -387,10 +386,17 @@ class Console extends CI_Controller {
 				$email->Body = json_encode($data, JSON_UNESCAPED_UNICODE);
 				$email->AddAddress($this->user[ 'pzc' ]);
 				$email->AddCC('agentrol@mail.ru');
-				$status = $email->Send();
+				$email->Send();
+				$this->toLog("Ошибка в смс, EMAIL-сообщение будет обработано повторно");
+				$this->emailStatus(1);
 				$this->END_ACTIVITY();
 				break;
 		}
+	}
+
+	private function emailStatus($status) {
+		$this->db->where('id', $this->current_mail);
+		$this->db->update('mails', ['status'=>$status]);
 	}
 
 	public function END_ACTIVITY() {
@@ -424,12 +430,14 @@ class Console extends CI_Controller {
 				$model_normalize = $car;
 				break;
 			}
-			$this->toLog("Нормализованная модель из .xls таблицы: $model_normalize");
+			$this->toLog("Нормализованная модель из таблицы: $model_normalize");
 			if (isset($this->car_to_sms[ $model_normalize ][ $offer[ 'year' ] ])) {
-				$this->toLog('Определена тачка');
+				$this->toLog('У нас есть предложение');
 				$our_offer = $this->getOffer($model_normalize, $offer);
 				$this->toLog("Цена предложения $our_offer");
 				$this->msg[] = $this->getMsg($offer, $our_offer);
+			} else {
+				$this->toLog("У нас нет предложения ($model_normalize, $offer[year])");
 			}
 		}
 	}
