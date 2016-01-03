@@ -51,14 +51,18 @@ class Web extends CI_Controller {
 				}
 			$data['min_balance'] = null;
 
-			// Обновляем файл с таблицей
-			$update['file'] = $this->do_upload('file');
-			if ($update['file']['status']) {
-				$data['file'] = $update['file']['upload_data']['file_name'];
-				$data['parsed_file'] = "";
+			$data = array_filter($data);
+
+			if (!empty($_FILES)) {
+				$update['file'] = $this->do_upload('file');
+				if ($update['file']['status']) {
+					$data['file'] = $update['file']['upload_data']['file_name'];
+					$data['parsed_file'] = "";
+				} else
+					$data['file'] = null;
 			} else
 				$data['file'] = null;
-			$data = array_filter($data);
+
 			if (isset($data['on'])) {
 				if (!$this->user['sys_active']) {
 					$data[ 'sys_active' ] = true;
@@ -67,6 +71,7 @@ class Web extends CI_Controller {
 			} else
 				$data['sys_active'] = false;
 			unset($data['on']);
+			unset($data['ajax']);
 			$update['upd'] = $this->db->update('users', $data, "id = {$this->user['id']}");
 		}
 
@@ -91,7 +96,8 @@ class Web extends CI_Controller {
 			'user'		=> $this->getUser(),
 			'logs'		=> $logs,
 			'title'		=> 'Настройки',
-			'force'     => $this->force_auth
+			'force'     => $this->force_auth,
+			'ajax'		=> $this->input->get_post('ajax')==1
 		];
 		$this->twig->render('index', $params);
 	}
@@ -140,6 +146,22 @@ class Web extends CI_Controller {
 			'users'		=> $this->getUsers()
 		];
 		$this->twig->render('admin', $params);
+	}
+
+	public function logs() {
+		$_logs = $this->db->select('*')
+			->where('user_id', $this->user['id'])
+			->limit(15)
+			->order_by('id', 'desc')
+			->get('logs');
+
+
+		$logs = [];
+		foreach ($_logs->result() as $log)
+			$logs[] = $log;
+
+		$this->twig->render('logs', array('logs' => $logs));
+
 	}
 
 	public function stats() {

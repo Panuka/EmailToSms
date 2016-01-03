@@ -103,7 +103,6 @@ class Console extends CI_Controller {
 	public function sendMsg($msg, $phone) {
 		if ($phone[ 0 ] == 8) $phone = substr_replace($phone, '+7', 0, 1);
 		$msg = iconv(mb_detect_encoding($msg), 'UTF-8', $msg);
-		return;
 		$this->getSms()->execCommad('sendSMS', array('sender' => 'SMS', 'sms_lifetime' => 0, 'text' => $msg, 'phone' => $phone,));
 	}
 
@@ -373,6 +372,7 @@ class Console extends CI_Controller {
 		// пишем в лог
 		$this->toLog('Не удалось определить гео');
 		$this->toLog('ЭКСТРЕННОЕ ЗАВЕРШЕНИЕ!');
+		$this->emailStatus(1);
 		$this->END_ACTIVITY();
 		die();
 	}
