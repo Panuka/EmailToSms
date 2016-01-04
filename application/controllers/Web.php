@@ -22,7 +22,7 @@ class Web extends CI_Controller {
 		$isNotStatsView = !$this->stats_auth;
 		if ($isNotLoggedIn && $isNotStatsView)
 			$this->needAuth();
-		$this->getUser(true);
+		$this->user = $this->getUser(true);
 //		$this->output->enable_profiler(TRUE);
 	}
 
@@ -61,7 +61,7 @@ class Web extends CI_Controller {
 				} else
 					$data['file'] = null;
 			} else
-				$data['file'] = null;
+				unset($data['file']);
 
 			if (isset($data['on'])) {
 				if (!$this->user['sys_active']) {
@@ -74,27 +74,10 @@ class Web extends CI_Controller {
 			unset($data['ajax']);
 			$update['upd'] = $this->db->update('users', $data, "id = {$this->user['id']}");
 		}
-
-
-
-		$_logs = $this->db->select('*')
-			->where('user_id', $this->user['id'])
-			->limit(15)
-			->order_by('id', 'desc')
-			->get('logs');
-
-
-		$logs = [];
-		foreach ($_logs->result() as $log)
-			$logs[] = $log;
-
-
-
 		$params = [
 			'isAuth'	=> $this->ion_auth->logged_in(),
 			'isAdmin'	=> $this->ion_auth->is_admin(),
 			'user'		=> $this->getUser(),
-			'logs'		=> $logs,
 			'title'		=> 'Настройки',
 			'force'     => $this->force_auth,
 			'ajax'		=> $this->input->get_post('ajax')==1
@@ -131,7 +114,7 @@ class Web extends CI_Controller {
 						->limit(1)
 						->order_by('id', 'desc')
 						->get('users')->row_array();
-					$unset = ["id"=>null, "ip_address"=>null, "username"=>null, "password"=>null, "salt"=>null, "email"=>null, "activation_code"=>null, "forgotten_password_code"=>null, "forgotten_password_time"=>null, "remember_code"=>null, "created_on"=>null, "last_login"=>null];
+					$unset = ["id"=>null, "ip_address"=>null, "username"=>null, "password"=>null, "salt"=>null, "email"=>null, "activation_code"=>null, "forgotten_password_code"=>null, "forgotten_password_time"=>null, "remember_code"=>null, "created_on"=>null, "last_login"=>null, "sys_active"=>false];
 					$additional = array_merge($additional, array_diff_key($user, $unset));
 				}
 				$this->ion_auth->register($login, $pass, $login, $additional);
@@ -149,19 +132,32 @@ class Web extends CI_Controller {
 	}
 
 	public function logs() {
+
+		if (is_null($log_count = $this->input->get('count')))
+			$log_count = 15;
 		$_logs = $this->db->select('*')
 			->where('user_id', $this->user['id'])
-			->limit(15)
+			->limit($log_count)
 			->order_by('id', 'desc')
 			->get('logs');
-
-
 		$logs = [];
 		foreach ($_logs->result() as $log)
 			$logs[] = $log;
 
 		$this->twig->render('logs', array('logs' => $logs));
 
+	}
+
+	public function mails($count=15) {
+		$_logs = $this->db->select('*')
+			->limit($count)
+			->order_by('id', 'desc')
+			->get('mails');
+		$logs = [];
+		foreach ($_logs->result() as $log)
+			$logs[] = $log;
+		echo "<pre>"; var_dump($logs); echo "</pre>";
+		die();
 	}
 
 	public function stats() {

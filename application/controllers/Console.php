@@ -43,8 +43,8 @@ class Console extends CI_Controller {
 			// Запускаем обработку пользователя
 			$this->START_ACTIVITY($user);
 			// проверяем баланс
-			$this->checkBalance();
-			//
+			if (!$this->checkBalance())
+				continue;
 			$this->processUser();
 			$this->sendMessages();
 			$this->writeStats();
@@ -64,7 +64,7 @@ class Console extends CI_Controller {
 	}
 
 	private function getUsers() {
-		$_users = $this->db->select('*')->where('active', 1)->where('sys_active', 1)->limit(1)->order_by('id', 'desc')->get('users');
+		$_users = $this->db->select('*')->where('active', 1)->where('sys_active', 1)->order_by('id', 'desc')->get('users');
 		$users = [];
 		foreach ($_users->result_array() as $user) $users[] = $user;
 		return $users;
@@ -157,6 +157,7 @@ class Console extends CI_Controller {
 		return $cars;
 	}
 
+
 	private function checkMail() {
 		$mailbox = new Mailbox('{imap.mail.ru:143}', $this->user[ 'mail_login' ], $this->user[ 'mail_pass' ], __DIR__);
 		$mailsIds = $mailbox->searchMailBox('ALL');
@@ -191,7 +192,7 @@ class Console extends CI_Controller {
 			$car = str_getcsv($rows[ $i ], ";");
 			if (!isset($car[ 3 ])) continue;
 			$offers[] = array('model' => (string) $car[ 0 ], 'kpp_type' => (stripos($car[ 1 ], 'А') !== false), // проверяем наличие буквы А - акпп
-			                  'year'  => (int) $car[ 2 ], 'price' => (int) filter_var(str_replace(' ', '', $car[ 3 ]), FILTER_SANITIZE_NUMBER_INT) / 1000, 'number' => filter_var($car[ 4 ], FILTER_SANITIZE_NUMBER_INT), 'href' => "Ручная отправка [s1]", 'geo' => "",);
+				'year'  => (int) $car[ 2 ], 'price' => (int) filter_var(str_replace(' ', '', $car[ 3 ]), FILTER_SANITIZE_NUMBER_INT) / 1000, 'number' => filter_var($car[ 4 ], FILTER_SANITIZE_NUMBER_INT), 'href' => "Ручная отправка [s1]", 'geo' => "",);
 		}
 		return $offers;
 	}
@@ -280,7 +281,6 @@ class Console extends CI_Controller {
 
 	public function checkBalance() {
 		$d = $this->getSms()->execCommad('getUserBalance', array('currency' => 'RUB'));
-		$balance_file = 'balance_status';
 		if (!isset($d[ 'result' ][ 'balance_currency' ])) {
 			$this->toLog("Невозможно получить баланс!");
 			$this->smsDown($d);
@@ -371,6 +371,7 @@ class Console extends CI_Controller {
 		$status = $email->Send();
 		// пишем в лог
 		$this->toLog('Не удалось определить гео');
+		$this->toLog('Подробности на почте '.$this->user[ 'pzc' ]);
 		$this->toLog('ЭКСТРЕННОЕ ЗАВЕРШЕНИЕ!');
 		$this->emailStatus(1);
 		$this->END_ACTIVITY();
@@ -469,7 +470,8 @@ class Console extends CI_Controller {
 			$time = "$h:$m";
 			foreach ($this->user[ 'report_time' ] as $r) if ($time == $r) $this->sendReport(str_replace("%DATE%",
 				\date('d/m/Y'), $this->user[ 'mail_theme_1' ]), "24 HOUR");
-			foreach ($this->user[ 'report_time_single' ] as $r) if ($time == $r) $this->sendReport($this->user[ 'mail_theme_2' ]);
+			foreach ($this->user[ 'report_time_single' ] as $r) if ($time == $r) $this->sendReport(str_replace("%DATE%",
+				\date('d/m/Y'), $this->user[ 'mail_theme_2' ]));
 		}
 	}
 

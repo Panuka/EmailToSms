@@ -179,7 +179,7 @@
 
                     <tr class="form-group">
                         <td></td>
-                        <td align="right"><input type="submit" value="Сохранить" class="btn btn-primary"></td>
+                        <td align="right"><input type="submit2" value="Сохранить" class="btn btn-primary" onclick="$(this).closest('form').submit();"></td>
                     </tr>
                 </table>
             </div>
@@ -200,13 +200,12 @@
         <div class="container">
             <div class="section-heading scrollpoint sp-effect3">
                 <h1>Log</h1>
-
                 <div class="divider"></div>
+                <input type="text" name="log" placeholder="15" onkeyup="$('#log_frame').attr('src', '/web/logs/?count='+$(this).val())">
                 <p></p>
             </div>
-
             <div class="log">
-                <iframe src="/web/logs/" frameborder="0" width="100%" height="100%"></iframe>
+                <iframe id="log_frame" src="/web/logs/" frameborder="0" width="100%" height="100%"></iframe>
             </div>
         </div>
     </section>
