@@ -42,6 +42,11 @@ class Web extends CI_Controller {
 			if (isset($data['report_time_single']))
 				$data['report_time_single'] = json_encode($data['report_time_single']);
 
+			// Опсосы
+			if (isset($data['opsos']))
+				$data['opsos'] = strtolower(json_encode(explode(',', mb_strtolower($data['opsos']))));
+
+
 			// Значения минимального баланса
 			if (isset($data['min_balance']))
 				if (is_array($data['min_balance'])) {
@@ -199,6 +204,18 @@ class Web extends CI_Controller {
 			foreach ($_offers->result_array() as $offer) {
 				$user['offers'][] = $offer;
 			}
+		}
+
+		if ($this->ion_auth->is_admin()) {
+			$db = $this->db->get('offers');
+			$ofs = [];
+			foreach ($db->result_array() as $of)
+				$ofs[] = $of;
+			$users[] = [
+				'id'=>-1,
+				'username' => 'Общая',
+				'offers' => $ofs
+			];
 		}
 
 		$params = [

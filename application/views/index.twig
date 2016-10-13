@@ -67,6 +67,12 @@
                                    value="{{ user.geo }}"></td>
                     </tr>
                     <tr class="form-group">
+                        <td><label for="opsos">Исключение операторов из рассылки</label><br>
+                        </td>
+                        <td><input class="form-control" type="text" id="opsos" name="opsos"
+                                   value="{{ user.opsos|join(',') }}"></td>
+                    </tr>
+                    <tr class="form-group">
                         <td><label for="report">Email для отчетов</label><br>
                             Для множественной рассылки - через запятую.
                         </td>
