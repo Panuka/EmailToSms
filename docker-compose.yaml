@@ -21,6 +21,6 @@ services:
       - ./docker/app/php.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
     ports:
       - 80:80
-      -
+
 volumes:
   db:
