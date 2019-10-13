@@ -436,6 +436,8 @@ class Console extends CI_Controller
 
     private function getGeoFromNumber($number)
     {
+        return ' ';
+
         if (is_null($number)) return false;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

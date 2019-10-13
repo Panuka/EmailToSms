@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mysql:
+    env_file:
+      - .env
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    image: mysql:5.6
+
+  app:
+    env_file:
+      - .env
+    build:
+      context: docker/app
+    volumes:
+      - ./:/var/www/html/
+      - ./docker/app/php.ini:/usr/local/etc/php/conf.d/php-ini-overrides.ini
+    ports:
+      - 80:80

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '123',
-	'database' => 'xls-prod',
+	'hostname' => $_ENV['DB_HOST'],
+	'username' => $_ENV['MYSQL_USER'],
+	'password' => $_ENV['MYSQL_PASSWORD'],
+	'database' => $_ENV['MYSQL_DATABASE'],
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
