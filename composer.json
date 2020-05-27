@@ -16,7 +16,7 @@
 		"kenjis/codeigniter-ss-twig": "^0.1.0",
 	  	"php-imap/php-imap": "~2.0",
 	  	"phpoffice/phpexcel": "dev-master",
-		"phpmailer/phpmailer": "5.4.x-dev"
+		"phpmailer/phpmailer": "6.1.6"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"
